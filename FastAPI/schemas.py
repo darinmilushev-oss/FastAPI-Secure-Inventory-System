@@ -37,4 +37,9 @@ class UserResponse(BaseModel):
     class Config:         
         from_attributes = True
 
+class OrderCreate(BaseModel):
+    user_id: int
+    items: list[ItemCreate]
+    email: str = Field(min_length=5, max_length=100)
+
 

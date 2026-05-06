@@ -67,3 +67,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         status_code=422,
         content=jsonable_encoder({"detail": exc.errors(), "body": exc.body})
     )
+@app.post("/orders/", response_model=schemas.OrderCreate)
+async def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
+    return crud.create_order(db=db, order=order)
+

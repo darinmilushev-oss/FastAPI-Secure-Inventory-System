@@ -48,4 +48,10 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 def get_item(db: Session, item_id: int):
     return db.query(models.Item).filter(models.Item.id == item_id).first()
+def create_order(db: Session, order: schemas.OrderCreate):
+    db_order = models.Order(user_id=order.user_id)
+    db.add(db_order)
+    db.commit()
+    db.refresh(db_order)
+    return db_order
 
