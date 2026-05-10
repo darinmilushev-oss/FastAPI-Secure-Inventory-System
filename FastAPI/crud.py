@@ -53,5 +53,6 @@ def create_order(db: Session, order: schemas.OrderCreate):
     db.add(db_order)
     db.commit()
     db.refresh(db_order)
+    
     return db_order
 
